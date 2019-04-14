@@ -9,13 +9,14 @@ class MoviesService
     static $API_KEY = "1f54bd990f1cdfb230adb312546d765d";
     static $PAGE;
     static $movies = [];
+    static $genres = [];
 
     /**
      * @return array
      */
     public static function getMovies()
     {
-        $url = MoviesService::$API_URL . "movie/now_playing?api_key=" . MoviesService::$API_KEY .
+        $url = MoviesService::$API_URL . "movie/upcoming?api_key=" . MoviesService::$API_KEY .
             "&page=" . MoviesService::$PAGE;
 
         $data = MoviesService::getApiData($url);
@@ -32,6 +33,17 @@ class MoviesService
         $data = MoviesService::getApiData($find_url);
         MoviesService::$movies = $data;
         return MoviesService::$movies;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getGenres()
+    {
+        $url = MoviesService::$API_URL . "genre/movie/list?api_key=" . MoviesService::$API_KEY;
+        $data = MoviesService::getApiData($url);
+        MoviesService::$genres = $data;
+        return MoviesService::$genres;
     }
 
     public static function getApiData($url)

@@ -43,12 +43,14 @@ class ListMovies extends Component {
       this.setState({
          term: e.target.value
       });
-      // Handle input change and call api
-      // this.setState({
-      //    term: e.target.value
-      // }, () => {
-      //    this.searchMovieByTerm();
-      // });
+   }
+
+   handleInstantSearch(e) {
+      this.setState({
+         term: e.target.value
+      }, () => {
+         this.searchMovieByTerm();
+      });
    }
 
    render() {
@@ -63,8 +65,11 @@ class ListMovies extends Component {
                </Col>
                <Col>
                <ButtonGroup className="float-right">
+
                   <Button onClick={() => this.loadPage(this.props.movies.page - 1)} disabled={this.props.movies.page < 2}><FontAwesomeIcon icon="backward" /> Previous</Button>
+
                   <Button onClick={() => this.loadPage(this.props.movies.page + 1)} disabled={this.props.movies.page >= this.props.movies.total_pages}>Next <FontAwesomeIcon icon="forward" /></Button>
+
                </ButtonGroup>
                </Col>
             </Row>
@@ -73,8 +78,11 @@ class ListMovies extends Component {
             </Row>
             <Row className="d-flex justify-content-center dark-bg py-4">
                   <ButtonGroup>
+
                      <Button onClick={() => this.loadPage(this.props.movies.page - 1)} disabled={this.props.movies.page < 2}><FontAwesomeIcon icon="backward" /> Previous</Button>
+
                      <Button onClick={() => this.loadPage(this.props.movies.page + 1)} disabled={this.props.movies.page >= this.props.movies.total_pages}>Next <FontAwesomeIcon icon="forward" /></Button>
+
                   </ButtonGroup>
             </Row>
          </Fragment>

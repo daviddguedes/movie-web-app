@@ -7,13 +7,24 @@ import {
 } from 'reactstrap';
 import { IMAGE_URL } from './../../constants';
 import { connect } from 'react-redux';
+import ListModal from './ListModal';
 
 class ListMovieItems extends Component {
-
-
    constructor(props) {
       super(props);
       this.getGenre = this.getGenre.bind(this);
+      this.toggle = this.toggle.bind(this);
+      this.state = {
+         modal: false,
+         selected: {}
+      };
+   }
+
+   toggle(item) {
+      this.setState(prevState => ({
+         modal: !prevState.modal,
+         selected: item
+      }));
    }
 
    getGenre = ids => {
@@ -37,7 +48,7 @@ class ListMovieItems extends Component {
             <Col>
                <ListGroup>
                   {this.props.movies.results.slice(0, 10).map(item => (
-                     <ListGroupItem key={item.id}>
+                     <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
                               <img src={IMAGE_URL + `${item.poster_path}`} />
@@ -58,7 +69,7 @@ class ListMovieItems extends Component {
             <Col>
                <ListGroup>
                   {this.props.movies.results.slice(10).map(item => (
-                     <ListGroupItem key={item.id}>
+                     <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
                               <img src={IMAGE_URL + `${item.poster_path}`} />
@@ -76,6 +87,8 @@ class ListMovieItems extends Component {
                   ))}
                </ListGroup>
             </Col>
+
+            {this.state.selected && <ListModal modal={this.state.modal} toggle={this.toggle} item={this.state.selected} />}
 
          </Fragment>
       )

@@ -11,7 +11,8 @@ export const fetchGenres = (data) => {
 
 export const listGenreAction = () => {
    return (dispatch) => {
-      return axios.get(`${API_URL}/genres`)
+      // return axios.get(`${API_URL}/genres`)
+      return axios.get(API_LIST_GENRES)
          .then(response => {
             dispatch(fetchGenres(response.data))
          })
@@ -20,3 +21,5 @@ export const listGenreAction = () => {
          });
    };
 };
+
+export const API_LIST_GENRES = "https://api.themoviedb.org/3/genre/movie/list?api_key=1f54bd990f1cdfb230adb312546d765d";

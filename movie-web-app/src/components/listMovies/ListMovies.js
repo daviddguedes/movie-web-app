@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import {
    Row,
    Button,
-   ButtonGroup
+   ButtonGroup,
+   Input,
+   Col,
+   InputGroup,
+   InputGroupAddon
 } from 'reactstrap';
 import './../../App.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -23,23 +27,35 @@ class ListMovies extends Component {
       this.props.listMoviesAction();
    }
 
+   loadPage(page) {
+      this.props.listMoviesAction(page);
+   }
+
    render() {
       return (
          <Fragment>
-            <Row className="d-flex justify-content-center dark-bg">
-               <ButtonGroup>
-                  <Button><FontAwesomeIcon icon="backward" /> Previous</Button>
-                  <Button>Next <FontAwesomeIcon icon="forward" /></Button>
+            <Row className="d-flex justify-content-center dark-bg py-4">
+               <Col>
+                  <InputGroup>
+                     <Input placeholder="Search Movie" />
+                     <InputGroupAddon addonType="append"><Button>Search</Button></InputGroupAddon>
+                  </InputGroup>
+               </Col>
+               <Col>
+               <ButtonGroup className="float-right">
+                  <Button onClick={() => this.loadPage(this.props.movies.page - 1)} disabled={this.props.movies.page < 2}><FontAwesomeIcon icon="backward" /> Previous</Button>
+                  <Button onClick={() => this.loadPage(this.props.movies.page + 1)} disabled={this.props.movies.page >= this.props.movies.total_pages}>Next <FontAwesomeIcon icon="forward" /></Button>
                </ButtonGroup>
+               </Col>
             </Row>
             <Row>
                <ListMovieItems />
             </Row>
-            <Row className="d-flex justify-content-center dark-bg">
-               <ButtonGroup>
-                  <Button><FontAwesomeIcon icon="backward" /> Previous</Button>
-                  <Button>Next <FontAwesomeIcon icon="forward" /></Button>
-               </ButtonGroup>
+            <Row className="d-flex justify-content-center dark-bg py-4">
+                  <ButtonGroup>
+                     <Button onClick={() => this.loadPage(this.props.movies.page - 1)} disabled={this.props.movies.page < 2}><FontAwesomeIcon icon="backward" /> Previous</Button>
+                     <Button onClick={() => this.loadPage(this.props.movies.page + 1)} disabled={this.props.movies.page >= this.props.movies.total_pages}>Next <FontAwesomeIcon icon="forward" /></Button>
+                  </ButtonGroup>
             </Row>
          </Fragment>
       )

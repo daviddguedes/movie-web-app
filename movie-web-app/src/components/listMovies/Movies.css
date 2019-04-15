@@ -1,0 +1,9 @@
+.ts-4 {
+    font-size: 0.7rem;
+    position: relative;
+    bottom: 0;
+}
+
+.row-relative {
+    position: relative;
+}

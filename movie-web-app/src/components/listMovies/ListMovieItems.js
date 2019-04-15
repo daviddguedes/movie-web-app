@@ -8,6 +8,7 @@ import {
 import { IMAGE_URL } from './../../constants';
 import { connect } from 'react-redux';
 import ListModal from './ListModal';
+import './Movies.css';
 
 class ListMovieItems extends Component {
    constructor(props) {
@@ -45,42 +46,63 @@ class ListMovieItems extends Component {
    render() {
       return (
          <Fragment>
-            <Col>
+            <Col md={4}>
                <ListGroup>
-                  {this.props.movies.results.slice(0, 10).map(item => (
+                  {this.props.movies.results.slice(0, 7).map(item => (
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img src={IMAGE_URL + `${item.poster_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}`} />
                            </Media>
-                           <Media body className="pl-3">
-                              <h4>
+                           <Media body className="pl-3 row-relative">
+                              <h5>
                                  {item.title}
-                              </h4>
-                              <p>{item.overview.substr(0, 150).concat('...')}</p>
+                              </h5>
+                              {/* <p>{item.overview.substr(0, 150).concat('...')}</p> */}
                               <p>Release date: {item.release_date}</p>
-                              <p>Genre: {this.getGenre(item.genre_ids)}</p>
+                              <p className="text-muted ts-4">Genre: {this.getGenre(item.genre_ids)}</p>
                            </Media>
                         </Media>
                      </ListGroupItem>
                   ))}
                </ListGroup>
             </Col>
-            <Col>
+            <Col md={4}>
                <ListGroup>
-                  {this.props.movies.results.slice(10).map(item => (
+                  {this.props.movies.results.slice(7, 14).map(item => (
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img src={IMAGE_URL + `${item.poster_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}`} />
+                           </Media>
+                           <Media body className="pl-3 row-relative">
+                              <h5>
+                                 {item.title}
+                              </h5>
+                              {/* <p>{item.overview.substr(0, 150).concat('...')}</p> */}
+                              <p>Release date: {item.release_date}</p>
+                              <p className="text-muted ts-4">Genre: {this.getGenre(item.genre_ids)}</p>
+                           </Media>
+                        </Media>
+                     </ListGroupItem>
+                  ))}
+               </ListGroup>
+            </Col>
+            <Col md={4}>
+               <ListGroup>
+                  {this.props.movies.results.slice(14).map(item => (
+                     <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
+                        <Media>
+                           <Media left href="#">
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}`} />
                            </Media>
                            <Media body className="pl-3">
-                              <h4>
+                              <h5>
                                  {item.title}
-                              </h4>
-                              <p>{item.overview.substr(0, 150).concat('...')}</p>
+                              </h5>
+                              {/* <p>{item.overview.substr(0, 150).concat('...')}</p> */}
                               <p>Release date: {item.release_date}</p>
-                              <p>Genre: {this.getGenre(item.genre_ids)}</p>
+                              <p className="text-muted ts-4">Genre: {this.getGenre(item.genre_ids)}</p>
                            </Media>
                         </Media>
                      </ListGroupItem>

@@ -13,22 +13,42 @@ import './../../App.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward, faForward } from '@fortawesome/free-solid-svg-icons';
-import { listMoviesAction } from './../../actions/MovieActions';
+import { listMoviesAction, listMoviesByTermAction } from './../../actions/MovieActions';
 import ListMovieItems from './ListMovieItems';
 
 library.add(faBackward, faForward);
 
 class ListMovies extends Component {
    state = {
-      numberCols: 4
-   }
+      numberCols: 4,
+      term: ''
+   };
 
    componentDidMount() {
       this.props.listMoviesAction();
    }
 
    loadPage(page) {
+      if (this.state.term != '') {
+         this.props.listMoviesByTermAction(this.state.term, page);
+      };
       this.props.listMoviesAction(page);
+   }
+
+   searchMovieByTerm() {
+      this.props.listMoviesByTermAction(this.state.term);
+   }
+
+   handleSearch(e) {
+      this.setState({
+         term: e.target.value
+      });
+      // Handle input change and call api
+      // this.setState({
+      //    term: e.target.value
+      // }, () => {
+      //    this.searchMovieByTerm();
+      // });
    }
 
    render() {
@@ -37,8 +57,8 @@ class ListMovies extends Component {
             <Row className="d-flex justify-content-center dark-bg py-4">
                <Col>
                   <InputGroup>
-                     <Input placeholder="Search Movie" />
-                     <InputGroupAddon addonType="append"><Button>Search</Button></InputGroupAddon>
+                     <Input onChange={(e) => this.handleSearch(e)} placeholder="Search Movie" />
+                     <InputGroupAddon addonType="append"><Button onClick={() => this.searchMovieByTerm()}>Search</Button></InputGroupAddon>
                   </InputGroup>
                </Col>
                <Col>
@@ -67,4 +87,4 @@ const mapStateToProps = state => ({
    genres: state.genreReducer.genres
 });
 
-export default connect(mapStateToProps, { listMoviesAction })(ListMovies);
+export default connect(mapStateToProps, { listMoviesAction, listMoviesByTermAction })(ListMovies);

@@ -52,7 +52,7 @@ class ListMovieItems extends Component {
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}` || `${item.backdrop_path}`} />
                            </Media>
                            <Media body className="pl-3 row-relative">
                               <h5>
@@ -73,7 +73,7 @@ class ListMovieItems extends Component {
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}` || `${item.backdrop_path}`} />
                            </Media>
                            <Media body className="pl-3 row-relative">
                               <h5>
@@ -94,7 +94,7 @@ class ListMovieItems extends Component {
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}` || `${item.backdrop_path}`} />
                            </Media>
                            <Media body className="pl-3">
                               <h5>

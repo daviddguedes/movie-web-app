@@ -1,0 +1,3 @@
+files/*
+movie-api/.idea/*
+movie-web-app/package-lock.json

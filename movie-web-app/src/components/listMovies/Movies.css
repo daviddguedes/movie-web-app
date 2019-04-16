@@ -1,6 +1,9 @@
 .ts-4 {
     font-size: 0.7rem;
-    position: relative;
+}
+
+.posB-0 {
+    position: absolute;
     bottom: 0;
 }
 

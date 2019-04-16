@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "./node_modules/lite-server --baseDir='./build'",
+    "server": "./node_modules/lite-server/bin/lite-server --baseDir='./build'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

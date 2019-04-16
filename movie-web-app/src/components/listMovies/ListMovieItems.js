@@ -44,6 +44,9 @@ class ListMovieItems extends Component {
    }
 
    render() {
+      if (!this.props.movies.results) {
+         return <h1 className="text-center">Loading...</h1>
+      }
       return (
          <Fragment>
             <Col md={4}>
@@ -52,7 +55,7 @@ class ListMovieItems extends Component {
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}` || `${item.backdrop_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={item.poster_path ? IMAGE_URL + `${item.poster_path}` : IMAGE_URL + `${item.backdrop_path}`} />
                            </Media>
                            <Media body className="pl-3 row-relative">
                               <h5>
@@ -73,7 +76,7 @@ class ListMovieItems extends Component {
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}` || `${item.backdrop_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={item.poster_path ? IMAGE_URL + `${item.poster_path}` : IMAGE_URL + `${item.backdrop_path}`} />
                            </Media>
                            <Media body className="pl-3 row-relative">
                               <h5>
@@ -94,7 +97,7 @@ class ListMovieItems extends Component {
                      <ListGroupItem key={item.id} onClick={() => this.toggle(item)}>
                         <Media>
                            <Media left href="#">
-                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={IMAGE_URL + `${item.poster_path}` || `${item.backdrop_path}`} />
+                              <img className="img-thumbnail img-responsive" style={{ width: 100 }} src={item.poster_path ? IMAGE_URL + `${item.poster_path}` : IMAGE_URL + `${item.backdrop_path}`} />
                            </Media>
                            <Media body className="pl-3">
                               <h5>

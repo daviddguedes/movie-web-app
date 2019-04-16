@@ -24,7 +24,8 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 });
 
 $app->group('/api', function () {
-    $this->get('/movie/{id}', MoviesController::class . ':find');
+    $this->get('/movie/{term}[/{page}]', MoviesController::class . ':find');
+    $this->get('/movie/[/{page}]', MoviesController::class . ':all');
     $this->get('/movies[/{page}]', MoviesController::class . ':all');
     $this->get('/genres', GenresController::class . ':all');
 });

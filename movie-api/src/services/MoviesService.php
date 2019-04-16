@@ -16,6 +16,7 @@ class MoviesService
      */
     public static function getMovies()
     {
+//        https://api.themoviedb.org/3/movie/upcoming?api_key=1f54bd990f1cdfb230adb312546d765d&page=${page}
         $url = MoviesService::$API_URL . "movie/upcoming?api_key=" . MoviesService::$API_KEY .
             "&page=" . MoviesService::$PAGE;
 
@@ -27,9 +28,11 @@ class MoviesService
     /**
      * @param array $movies
      */
-    public static function findMovie($id)
+    public static function findMovie($term)
     {
-        $find_url = MoviesService::$API_URL . "movie/" . $id . "?api_key=" . MoviesService::$API_KEY;
+        $find_url = MoviesService::$API_URL . "search/movie?api_key="
+            . MoviesService::$API_KEY . "&query='" . rawurlencode($term) . "'&page=" . MoviesService::$PAGE;
+
         $data = MoviesService::getApiData($find_url);
         MoviesService::$movies = $data;
         return MoviesService::$movies;

@@ -14,7 +14,8 @@ class MoviesController extends BaseController
     }
 
     public function find($request, $response, $args) {
-        $movies = MoviesService::findMovie($args['id']);
-        return $response->withJson(['result' => $movies]);
+        MoviesService::$PAGE = $args['page'];
+        $movies = MoviesService::findMovie($args['term']);
+        return $response->withJson($movies);
     }
 }
